@@ -440,9 +440,18 @@
 				<Index>9</Index>
 			</Item>
 			<Item type="Command">
+				<Path>bcdedit.exe</Path>
+				<Params>/set {current} nx AlwaysOn</Params>
+				<Index>10</Index>
+			</Item>
+			<Item type="Placeholder">
+				<Index>11</Index>
+			</Item>
+			</Item>
+			<Item type="Command">
 				<Path>powershell</Path>
 				<Params>Disable-PnpDevice -InstanceId 'ACPI\PNP0A0A\2&amp;DABA3FF&amp;0'</Params>
-				<Index>10</Index>
+				<Index>11</Index>
 			</Item>
 			<Item type="Placeholder">
 				<Index>11</Index>
