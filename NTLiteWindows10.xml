@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Preset xmlns="urn:schemas-nliteos-com:pn.v1">
-	<Date>11/03/2019 18:23:28</Date>
+	<Date>02/15/2020 05:42:33</Date>
 	<AppInfo>
-		<Version>1.9.0.7216</Version>
+		<Version>1.9.0.7304</Version>
 		<Licensed>No</Licensed>
 		<Protections>Yes</Protections>
-		<Host>Windows 10 Enterprise (1909) x64 - Client 10.0.18363.449 (en-US)</Host>
+		<Host>Windows 10 Enterprise (1909) x64 - Client 10.0.18363.657 (en-US)</Host>
 	</AppInfo>
 	<ImageInfo>
-		<Version mode="offline">Windows 10 Professional (1903) x64 - Client 10.0.18362.387 (en-US)</Version>
-		<GUID>{4F1B2CE7-F311-C63A-674E-32A90307BCB6}</GUID>
+		<Version mode="offline">Windows 10 Professional (1909) x64 - Client 10.0.18363.657 (en-US)</Version>
+		<GUID>{5573D1A9-389A-88EE-8035-69D866D991F5}</GUID>
 	</ImageInfo>
 	<RemoveComponents>
 		<c>enterpriseclientsync 'Work Folders Client'</c>
@@ -59,7 +59,6 @@
 		<c>manifestbackup 'Manifest Backup (WinSxS\Backup)'</c>
 		<c>Microsoft.Advertising.Xaml 'Advertising.Xaml'</c>
 		<c>Microsoft.BingWeather 'BingWeather'</c>
-		<c>Microsoft.BioEnrollment 'BioEnrollment'</c>
 		<c>Microsoft.DesktopAppInstaller 'DesktopAppInstaller'</c>
 		<c>Microsoft.GetHelp 'GetHelp'</c>
 		<c>Microsoft.Getstarted 'Tips (Get Started)'</c>
@@ -95,7 +94,6 @@
 		<c>Microsoft.ZuneVideo 'ZuneVideo'</c>
 		<c>mobilepc_location 'Location notifications'</c>
 		<c>mobilepc_sensors 'Sensors'</c>
-		<c>webcamexperience 'Webcam Experience'</c>
 	</RemoveComponents>
 	<Compatibility protectHidden="false">
 		<ComponentFeatures>
@@ -139,18 +137,24 @@
 	<Features>
 		<Feature name="Browser.InternetExplorer~~~~0.0.11.0">false</Feature>
 		<Feature name="Language.Handwriting~~~en-us~0.0.1.0">false</Feature>
+		<Feature name="Hello.Face.18331~~~~0.0.1.0">false</Feature>
+		<Feature name="Hello.Face.Migration.18331~~~~0.0.1.0">false</Feature>
 		<Feature name="Internet-Explorer-Optional-amd64">false</Feature>
 		<Feature name="Printing-Foundation-InternetPrinting-Client">false</Feature>
 		<Feature name="TelnetClient">true</Feature>
-		<Feature name="Windows-Defender-ApplicationGuard">true</Feature>
-		<Feature name="Hello.Face.Migration.18330~~~~0.0.1.0">false</Feature>
-		<Feature name="Hello.Face.18330~~~~0.0.1.0">false</Feature>
 	</Features>
-	<AddPackages></AddPackages>
+	<AddPackages>
+		<Package>C:\Users\Create\Desktop\Tools\NTLite\Updates\10.0.1909.x64\windows10.0-kb4534132-x64-ndp48_21067bd5f9c305ee6a6cee79db6ca38587cb6ad8.msu</Package>
+		<Package>C:\Users\Create\Desktop\Tools\NTLite\Updates\10.0.1909.x64\windows10.0-kb4497165-v4-x64_56bf6498dd6757ab61790f40b464c1349c195c11.msu</Package>
+		<Package>C:\Users\Create\Desktop\Tools\NTLite\Updates\10.0.1909.x64\windows10.0-kb4524244-x64_f8123fad10d98dc24ac6f9473b404c2f3483b112.msu</Package>
+	</AddPackages>
 	<Drivers showHidden="false">
 		<AddDrivers>
-			<Driver>D:\DEVICE\Intel_LAN\PROWinx64\PRO1000\Winx64\NDIS68\e1d68x64.inf</Driver>
-			<Driver>D:\DEVICE\intel_chipset\Intel\FORCED\10x64\5.5.4.1036\iaStorE.inf</Driver>
+			<Driver>C:\Users\Create\Desktop\W10\vmwt\pvscsi\Win8\pvscsi.inf</Driver>
+			<Driver>C:\Users\Create\Desktop\W10\vmwt\video_wddm\Vista\vm3d.inf</Driver>
+			<Driver>C:\Users\Create\Desktop\W10\vmwt\mouse\Win8\vmmouse.inf</Driver>
+			<Driver>C:\Users\Create\Desktop\W10\vmwt\mouse\Win8\vmusbmouse.inf</Driver>
+			<Driver>C:\Users\Create\Desktop\W10\vmwt\vmxnet3\Win8\vmxnet3.inf</Driver>
 		</AddDrivers>
 	</Drivers>
 	<Unattended mode="1">
@@ -180,6 +184,7 @@
 				<OOBE>
 					<HideEULAPage>true</HideEULAPage>
 					<HideOnlineAccountScreens>true</HideOnlineAccountScreens>
+					<NetworkLocation>Other</NetworkLocation>
 					<ProtectYourPC>3</ProtectYourPC>
 					<SkipMachineOOBE>true</SkipMachineOOBE>
 					<SkipUserOOBE>true</SkipUserOOBE>
@@ -245,8 +250,14 @@
 	</Unattended>
 	<Tweaks>
 		<Settings>
+			<TweakGroup name="AppCompat">
+				<Tweak name="AppCompat\DisableInventory">1</Tweak>
+			</TweakGroup>
 			<TweakGroup name="DesktopTweaks">
+				<Tweak name="Personalize\AppsUseLightTheme">0</Tweak>
+				<Tweak name="Personalize\SystemUsesLightTheme">0</Tweak>
 				<Tweak name="ContentDeliveryManager\SoftLandingEnabled">0</Tweak>
+				<Tweak name="Explorer\HidePeopleBar">1</Tweak>
 				<Tweak name="Search\SearchboxTaskbarMode">0</Tweak>
 				<Tweak name="ContentDeliveryManager\SubscribedContent-310093Enabled">0</Tweak>
 			</TweakGroup>
@@ -256,6 +267,7 @@
 				<Tweak name="cmd\HideBasedOnVelocityId">0</Tweak>
 				<Tweak name="ControlPanel\StartupPage">1</Tweak>
 				<Tweak name="ControlPanel\AllItemsIconView">1</Tweak>
+				<Tweak name="Explorer\DisableThumbnailsOnNetworkFolders">1</Tweak>
 				<Tweak name="Explorer\DisableEdgeDesktopShortcutCreation">1</Tweak>
 				<Tweak name="Advanced\NavPaneExpandToCurrentFolder">1</Tweak>
 				<Tweak name="Advanced\NavPaneShowAllFolders">1</Tweak>
@@ -268,7 +280,6 @@
 				<Tweak name="Advanced\HideDrivesWithNoMedia">0</Tweak>
 				<Tweak name="Advanced\HideFileExt">0</Tweak>
 				<Tweak name="Advanced\Hidden">1</Tweak>
-				<Tweak name="Advanced\ShowSuperHidden">1</Tweak>
 			</TweakGroup>
 			<TweakGroup name="InternetExplorer">
 				<Tweak name="Main\Isolation64Bit">1</Tweak>
@@ -285,6 +296,7 @@
 				<Tweak name="phoneCallHistory\Value">Deny</Tweak>
 				<Tweak name="webcam\Value">Deny</Tweak>
 				<Tweak name="contacts\Value">Deny</Tweak>
+				<Tweak name="appDiagnostics\Value">Deny</Tweak>
 				<Tweak name="documentsLibrary\Value">Deny</Tweak>
 				<Tweak name="email\Value">Deny</Tweak>
 				<Tweak name="chat\Value">Deny</Tweak>
@@ -301,12 +313,14 @@
 				<Tweak name="features\PaidWifi">0</Tweak>
 				<Tweak name="features\WiFiSenseOpen">0</Tweak>
 				<Tweak name="ContentDeliveryManager\SilentInstalledAppsEnabled">0</Tweak>
+				<Tweak name="System\AllowClipboardHistory">0</Tweak>
 				<Tweak name="TrainedDataStore\HarvestContacts">0</Tweak>
 				<Tweak name="InputPersonalization\RestrictImplicitTextCollection">1</Tweak>
 				<Tweak name="InputPersonalization\RestrictImplicitInkCollection">1</Tweak>
 				<Tweak name="Windows Search\AllowCortana">0</Tweak>
 				<Tweak name="Search\HistoryViewEnabled">0</Tweak>
 				<Tweak name="Search\DeviceHistoryEnabled">0</Tweak>
+				<Tweak name="Advanced\ShowCortanaButton">0</Tweak>
 				<Tweak name="ContentDeliveryManager\RotatingLockScreenOverlayEnabled">0</Tweak>
 				<Tweak name="SmartGlass\UserAuthPolicy">0</Tweak>
 				<Tweak name="SmartGlass\BluetoothPolicy">0</Tweak>
@@ -322,12 +336,13 @@
 				<Tweak name="ContentDeliveryManager\OemPreInstalledAppsEnabled">0</Tweak>
 				<Tweak name="Search\BingSearchEnabled">0</Tweak>
 				<Tweak name="TIPC\Enabled">0</Tweak>
+				<Tweak name="ContentDeliveryManager\SubscribedContent-338393Enabled">0</Tweak>
 				<Tweak name="UserProfileEngagement\ScoobeSystemSettingEnabled">0</Tweak>
 				<Tweak name="AppHost\EnableWebContentEvaluation">1</Tweak>
 				<Tweak name="Settings\InsightsEnabled">0</Tweak>
 				<Tweak name="AnqpCache\OsuRegistrationStatus">0</Tweak>
 				<Tweak name="FlipAhead\FPEnabled">0</Tweak>
-				<Tweak name="MicrosoftEdge\PhishingFilter\Enabledv9">0</Tweak>
+				<Tweak name="MicrosoftEdge\PhishingFilter\Enabledv9">1</Tweak>
 				<Tweak name="Internet Explorer\PhishingFilter\Enabledv9">1</Tweak>
 				<Tweak name="Explorer\SmartScreenEnabled">RequireAdmin</Tweak>
 				<Tweak name="ContentDeliveryManager\RotatingLockScreenEnabled">1</Tweak>
@@ -338,31 +353,35 @@
 				<Tweak name="OneDrive\DisableFileSyncNGSC">1</Tweak>
 			</TweakGroup>
 			<TweakGroup name="TCPIPSettings">
-				<Tweak name="parameters\DisableReverseAddressRegistrations">1</Tweak>
-				<Tweak name="parameters\DisableDynamicUpdate">1</Tweak>
 				<Tweak name="parameters\EnableICMPRedirect">0</Tweak>
 				<Tweak name="parameters\IGMPLevel">0</Tweak>
 				<Tweak name="parameters\PerformRouterDiscovery">0</Tweak>
 			</TweakGroup>
+			<TweakGroup name="UAC">
+				<Tweak name="System\FilterAdministratorToken">1</Tweak>
+				<Tweak name="System\ConsentPromptBehaviorAdmin">1</Tweak>
+				<Tweak name="System\ConsentPromptBehaviorUser">1</Tweak>
+			</TweakGroup>
 			<TweakGroup name="Windows">
+				<Tweak name="Windows\DisableATMFD">1</Tweak>
 				<Tweak name="Configuration\DisableResetbase">0</Tweak>
 				<Tweak name="ReserveManager\ShippedWithReserves">1</Tweak>
 			</TweakGroup>
 			<TweakGroup name="WindowsDefender">
+				<Tweak name="State\AccountProtection_MicrosoftAccount_Disconnected">0</Tweak>
 				<Tweak name="Features\TamperProtection">1</Tweak>
 			</TweakGroup>
 			<TweakGroup name="WindowsUpdate">
-				<Tweak name="DriverSearching\SearchOrderConfig">2</Tweak>
-				<Tweak name="DeliveryOptimization\DODownloadMode">1</Tweak>
-				<Tweak name="MRT\DontOfferThroughWUAU">0</Tweak>
-				<Tweak name="AU\AUOptions">2</Tweak>
+				<Tweak name="DriverSearching\SearchOrderConfig">0</Tweak>
 			</TweakGroup>
 		</Settings>
 		<Services>
 			<TweakGroup name="services">
 				<Tweak name="AJRouter\AJRouter">4</Tweak>
+				<Tweak name="DiagTrack\DiagTrack">4</Tweak>
 				<Tweak name="lfsvc\lfsvc">4</Tweak>
 				<Tweak name="lltdsvc\lltdsvc">4</Tweak>
+				<Tweak name="sppsvc\sppsvc">3</Tweak>
 				<Tweak name="SSDPSRV\SSDPSRV">4</Tweak>
 			</TweakGroup>
 		</Services>
@@ -377,6 +396,12 @@
 		<ImageTasks>
 			<Task>imageSaveRebuild</Task>
 			<Task>imageFormatSwm</Task>
+			<Task>tweaksettings_boot.wim_01_9_64</Task>
+			<Task>tweaksettings_boot.wim_02_2_64</Task>
+			<Task>tweaksettings_winre.wim_01__64</Task>
+			<Task>drivers_boot.wim_01_9_64</Task>
+			<Task>drivers_boot.wim_02_2_64</Task>
+			<Task>drivers_winre.wim_01__64</Task>
 			<Task>imageOptionsCreateIso</Task>
 		</ImageTasks>
 		<AutoIsoFile>C:\Users\Create\Desktop\W10\NTLite.iso</AutoIsoFile>
@@ -400,61 +425,62 @@
 				<Index>1</Index>
 			</Item>
 			<Item type="Command">
-				<Path>powershell</Path>
-				<Params>Disable-NetAdapterBinding -Name "*" -ComponentID ms_tcpip6,ms_lldp,ms_rspndr,ms_lltdio,ms_pacer</Params>
+				<Path>reg</Path>
+				<Params>add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient" /v EnableMulticast /t REG_DWORD /d 0 /f</Params>
 				<Index>2</Index>
-			</Item>
-			<Item type="Command">
-				<Path>wmic</Path>
-				<Params>/interactive:off nicconfig where TcpipNetbiosOptions!=2 call SetTcpipNetbios 2</Params>
-				<Index>3</Index>
 			</Item>
 			<Item type="Command">
 				<Path>reg</Path>
 				<Params>add "HKLM\System\CurrentControlSet\Services\NetBT\Parameters" /v "EnableLMHOSTS" /t REG_DWORD /d "0" /f</Params>
-				<Index>4</Index>
-			</Item>
-			<Item type="Command">
-				<Path>powershell</Path>
-				<Params>(New-Object -ComObject "Microsoft.Update.ServiceManager").ClientApplicationID = "My App"; (New-Object -ComObject "Microsoft.Update.ServiceManager").AddService2( "7971f918-a847-4430-9279-4a52d1efe18d",7,"")</Params>
-				<Index>5</Index>
+				<Index>3</Index>
 			</Item>
 			<Item type="Command">
 				<Path>reg</Path>
 				<Params>add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\CommonGlobUserSettings\Control Panel\International" /V "iFirstDayOfWeek" /T "REG_SZ" /D "0" /F</Params>
-				<Index>6</Index>
+				<Index>4</Index>
+			</Item>
+			<Item type="Command">
+				<Path>wmic</Path>
+				<Params>/interactive:off nicconfig where TcpipNetbiosOptions!=2 call SetTcpipNetbios 2</Params>
+				<Index>5</Index>
 			</Item>
 			<Item type="Command">
 				<Path>wmic</Path>
 				<Params>startup where name="OneDrive" delete</Params>
-				<Index>7</Index>
+				<Index>6</Index>
 			</Item>
 			<Item type="Command">
 				<Path>wmic</Path>
-				<Params>wmic startup where name="OneDriveSetup" delete</Params>
+				<Params>startup where name="OneDriveSetup" delete</Params>
+				<Index>7</Index>
+			</Item>
+			<Item type="Command">
+				<Path>powershell</Path>
+				<Params>Disable-NetAdapterBinding -Name "*" -ComponentID ms_tcpip6,ms_lldp,ms_rspndr,ms_lltdio,ms_pacer</Params>
 				<Index>8</Index>
-			</Item>
-			<Item type="Command">
-				<Path>reg</Path>
-				<Params>add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient" /v EnableMulticast /t REG_DWORD /d 0 /f</Params>
-				<Index>9</Index>
-			</Item>
-			<Item type="Command">
-				<Path>bcdedit.exe</Path>
-				<Params>/set {current} nx AlwaysOn</Params>
-				<Index>10</Index>
-			</Item>
-			<Item type="Placeholder">
-				<Index>11</Index>
-			</Item>
 			</Item>
 			<Item type="Command">
 				<Path>powershell</Path>
 				<Params>Disable-PnpDevice -InstanceId 'ACPI\PNP0A0A\2&amp;DABA3FF&amp;0'</Params>
+				<Index>9</Index>
+			</Item>
+			<Item type="Command">
+				<Path>powershell</Path>
+				<Params>(New-Object -ComObject "Microsoft.Update.ServiceManager").ClientApplicationID = "My App"; (New-Object -ComObject "Microsoft.Update.ServiceManager").AddService2( "7971f918-a847-4430-9279-4a52d1efe18d",7,"")</Params>
+				<Index>10</Index>
+			</Item>
+			<Item type="Command">
+				<Path>reg</Path>
+				<Params>add "HKLM\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\PendingServiceRegistration\7971f918-a847-4430-9279-4a52d1efe18d" /v "ClientApplicationID" /t REG_SZ /d "My App"</Params>
 				<Index>11</Index>
 			</Item>
+			<Item type="Command">
+				<Path>reg</Path>
+				<Params>add "HKLM\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\PendingServiceRegistration\7971f918-a847-4430-9279-4a52d1efe18d" /v "RegisterWithAU" /t REG_DWORD /d 1</Params>
+				<Index>12</Index>
+			</Item>
 			<Item type="Placeholder">
-				<Index>11</Index>
+				<Index>13</Index>
 			</Item>
 		</Add>
 	</Execution>
