@@ -9,6 +9,7 @@ For the purpose of trying to correct Microsoft's critical mistakes.
 
 disable-network-connectivity-modern-standby-windows-10
 #win upd drivers
+check blog post 'The Windows Update policies you should set and why'
 fsutil behavior set disableencryption 1
   cipher /d /s:C:\
   reg add "HKLM\Software\Policies\Microsoft\Windows\EnhancedStorageDevices" /v "TCGSecurityActivationDisabled" /t REG_DWORD /d "1" /f
