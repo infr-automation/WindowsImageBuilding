@@ -1,5 +1,7 @@
 NTLite-based Windows pre-Setup customizations.
 
+For the purpose of trying to correct Microsoft's critical mistakes.
+
 1. Done: look inisde the XML.
 
 2. To-Do:
