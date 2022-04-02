@@ -15,7 +15,7 @@ fsutil behavior set disableencryption 1
   reg add "HKLM\Software\Policies\Microsoft\Windows\EnhancedStorageDevices" /v "TCGSecurityActivationDisabled" /t REG_DWORD /d "1" /f
   sc config BDESVC start= disabled
   sc config "EFS" start= disabled
-upd other ms prod
+upd other ms prod Add-WuServiceManager
 dis allow remote assist
 sched dis client for ms net
   file and pr sharing
