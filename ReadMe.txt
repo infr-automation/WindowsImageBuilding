@@ -60,3 +60,4 @@ prevent system volume information folder creation
 storage spaces not working
 +zip fldr
 -wrk fldr
++rmdks crp
