@@ -58,3 +58,5 @@ run apps in containers
 upd ms store apps
 prevent system volume information folder creation
 storage spaces not working
++zip fldr
+-wrk fldr
