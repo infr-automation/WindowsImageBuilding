@@ -4,10 +4,16 @@ For the purpose of trying to correct Microsoft's critical mistakes.
 
 1. Done: look inisde the XML.
 
-2. To-Do:
+2. To-Add:
 
 
-disable-network-connectivity-modern-standby-windows-10
+
+powercfg /setdcvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
+powercfg /setacvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
+REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\F15576E8-98B7-4186-B944-EAFA664402D9 /v Attributes /t REG_DWORD /d 2 /f
+https://www.notebookcheck.net/Useful-Life-Hack-How-to-Disable-Modern-Standby-Connected-Standby.453125.0.html
+https://www.dell.com/community/XPS/How-to-disable-modern-standby-in-Windows-21H1/td-p/7996308
+
 #win upd drivers
 check blog post 'The Windows Update policies you should set and why'
 fsutil behavior set disableencryption 1
@@ -61,3 +67,15 @@ storage spaces not working
 +zip fldr
 -wrk fldr
 +rmdks crp
+
+Sources:
+https://www.elevenforum.com/tutorials/
+https://www.winos.me/
+https://github.com/Chuyu-Team/Dism-Multi-language
+https://www.elevenforum.com/tutorials/?prefix_id=7
+https://www.elevenforum.com/tutorials/?prefix_id=12
+https://www.tenforums.com/tutorials/id-Installation_Upgrade/
+https://www.tenforums.com/tutorials/id-Virtualization/
+nsanef topic/249660-disable-windows-10-telemetry-and-data-collection-collection-of-methods-tools
+https://devblogs.microsoft.com/scripting/automatically-enable-and-disable-trace-logs-using-powershell/
+https://duckduckgo.com/?q=windows+11+disable+logging+tracing&ia=web
