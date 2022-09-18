@@ -7,6 +7,8 @@ For the purpose of trying to correct Microsoft's critical mistakes.
 2. To-Add:
 
 
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\CrashControl]
+"EnableLogFile"=dword:00000000
 
 powercfg /setdcvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
 powercfg /setacvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
