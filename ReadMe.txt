@@ -6,6 +6,8 @@ For the purpose of trying to correct Microsoft's critical mistakes.
 
 2. To-Add:
 
+https://gist.github.com/raspi/203aef3694e34fefebf772c78c37ec2c#file-enable-all-advanced-power-settings-ps1-L5
+
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\CrashControl]
 "EnableLogFile"=dword:00000000
