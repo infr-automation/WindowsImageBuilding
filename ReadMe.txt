@@ -9,6 +9,7 @@ https://www.softpedia.com/get/System/Launchers-Shutdown-Tools/Power-Plan-Assista
 
 -Enable more Power settings Coalscing IO looks interesting I wonder if it affects performance
 https://gist.github.com/raspi/203aef3694e34fefebf772c78c37ec2c#file-enable-all-advanced-power-settings-ps1-L5
+https://gist.github.com/Nt-gm79sp/1f8ea2c2869b988e88b4fbc183731693
 https://www.tenforums.com/performance-maintenance/149514-list-hidden-power-plan-attributes-maximize-cpu-performance.html
 https://www.tenforums.com/tutorials/107613-add-remove-ultimate-performance-power-plan-windows-10-a.html
 https://forums.guru3d.com/threads/windows-power-plan-settings-explorer-utility.416058/
