@@ -2,7 +2,10 @@ Windows 11 Tuning
 
 1. The NTLite XML file: Work in progress
 
-2. Additional tuning to be added:
+2. Add tools
+https://www.softpedia.com/get/System/Launchers-Shutdown-Tools/Power-Plan-Assistant.shtml
+
+3. Additional tuning to be added:
 
 -Enable more Power settings Coalscing IO looks interesting I wonder if it affects performance
 https://gist.github.com/raspi/203aef3694e34fefebf772c78c37ec2c#file-enable-all-advanced-power-settings-ps1-L5
