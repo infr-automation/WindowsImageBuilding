@@ -1,4 +1,4 @@
-Windows 11 Tuning because Microsoft only sometimes have working features and only sometimes produce solutions
+Windows 11 Tuning
 
 1. The NTLite XML file: Work in progress
 
@@ -16,7 +16,7 @@ fsutil behavior set disableencryption 1
   sc config "EFS" start= disabled
 
 
--Disable modern standby because it's creepy crashy and overheaty. Nice try Microsoft better luck next time or if you were more open you wouldn't be under constant critique barage. Weirdos.
+-Disable modern standby because it's creepy crashy and overheaty
 
 powercfg /setdcvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
 powercfg /setacvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
@@ -40,9 +40,9 @@ https://techcommunity.microsoft.com/t5/windows-it-pro-blog/the-windows-update-po
 upd other ms prod Add-WuServiceManager
 
 
-- disallow allow remote assist because it's such a laggy experience that no one is really using it
+- disallow allow remote assist because it's laggy
 
-- add scheduled task to disable Microsoft's insanely stupid decisions
+- add scheduled task to disable stuff
   client for ms net
   file and pr sharing
   register w dns
@@ -51,14 +51,14 @@ upd other ms prod Add-WuServiceManager
   eth fc
   bt off
 
-- Turn off IPv6 because no one is really using it since connection tracking for NAT is lower cost than connection tracking for IPv6 inbound fw
+- Turn off IPv6
 Prevent ipv6:: binding
 dis set-Net6to4Configuration
 
-- Firewall default disallow or replace the firewall
+- Firewall default disallow
 fw dis inbound out- allj, cast teredo v6 cortana mDNS Narrator network discovery remote assist start wi-fi direct windows calc windows search wireless display
 
--and so on so much crap to disable it can take me a lifetime to get rid of it:
+-and so on:
 
 disable default admin and disk share server
 restrict access over anonymous connections
