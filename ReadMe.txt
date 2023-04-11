@@ -1,4 +1,4 @@
-Windows 11 Tuning
+Windows 11/10 Tuning
 
 1. The NTLite XML file: Work in progress
 
