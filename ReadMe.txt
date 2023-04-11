@@ -100,6 +100,9 @@ storage spaces not working
 -wrk fldr
 +rmdks crp
 
+MS Store:
+- turn off autoplay videos
+
 Sources:
 https://www.elevenforum.com/tutorials/
 https://www.winos.me/
