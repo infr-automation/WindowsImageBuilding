@@ -51,6 +51,7 @@ https://www.dell.com/community/XPS/How-to-disable-modern-standby-in-Windows-21H1
 
 
 -Reduce logging resource usage
+- symlink logs and tempfiles to > NUL
 (example)
 @echo off
 
