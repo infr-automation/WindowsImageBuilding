@@ -1,5 +1,7 @@
-Windows 11/10/8.1/8 Gold Disk image distribution building,
+Windows 11 and earlier, Gold Disk image distribution building,
 Inspired by the need for reliable OS 'tooling'.
+
+v0.1-notworkingyet
 
 1. Slim down the ISO
 The NTLite XML file: Work in progress
