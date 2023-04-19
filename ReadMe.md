@@ -1,31 +1,57 @@
-Windows 11 and earlier, Gold Disk image distribution building,
-Inspired by the need for reliable OS 'tooling'.
+# Windows Gold Disk Building
+_Inspired by the need for a reliable OS_
 
-v0.1-notworkingyet
+use case: every OS use case
 
-1. Slim down the ISO
-The NTLite XML file: Work in progress
---should try make scalable by moving to a scripted solution or scripting NTLite
+ver 0.0001 a template
 
-2. Add tools
-https://www.softpedia.com/get/System/Launchers-Shutdown-Tools/Power-Plan-Assistant.shtml
--- should Totally script Scheduled Tasks to replace this piece of software.
+## 1. Set up an environment to perform the modifications.
+```powershell
+# placeholder
+```
+### References:
 
-3. Change OS behaviors
-(needs testing and fixing)
+## 2. Slim down the ISO
+```powershell
+# placeholder
+```
+### References:
 
--Enable more Power settings
-https://gist.github.com/raspi/203aef3694e34fefebf772c78c37ec2c#file-enable-all-advanced-power-settings-ps1-L5
-https://gist.github.com/Nt-gm79sp/1f8ea2c2869b988e88b4fbc183731693
-https://www.tenforums.com/performance-maintenance/149514-list-hidden-power-plan-attributes-maximize-cpu-performance.html
-https://www.tenforums.com/tutorials/107613-add-remove-ultimate-performance-power-plan-windows-10-a.html
-https://forums.guru3d.com/threads/windows-power-plan-settings-explorer-utility.416058/
+> - https://github.com/infr-automation/WindowsImageBuilding/blob/master/NTLiteFreeWindows11TuningPreSetupStagev01.xml.xml
 
--Coalescing IO
 
--Postpone HDD encryption because it interferes with OS break-fix and performance.
-The following script disables HDD encryption on your system. This can help improve performance and avoid issues with OS break-fix.
 
+## 3. OS settings
+
+### 3.1 Power Management
+```powershell
+# placeholder
+# Disable modern standby because it's creepy crashy and overheaty
+
+powercfg /setdcvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
+powercfg /setacvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
+REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\F15576E8-98B7-4186-B944-EAFA664402D9 /v Attributes /t REG_DWORD /d 2 /f
+
+# Coalescing IO
+
+```
+
+#### References:
+> https://www.softpedia.com/get/System/Launchers-Shutdown-Tools/Power-Plan-Assistant.shtml
+> https://gist.github.com/raspi/203aef3694e34fefebf772c78c37ec2c#file-enable-all-advanced-power-settings-ps1-L5
+> https://gist.github.com/Nt-gm79sp/1f8ea2c2869b988e88b4fbc183731693
+> https://www.tenforums.com/performance-maintenance/149514-list-hidden-power-plan-attributes-maximize-cpu-performance.html
+> https://www.tenforums.com/tutorials/107613-add-remove-ultimate-performance-power-plan-windows-10-a.html
+> https://forums.guru3d.com/threads/windows-power-plan-settings-explorer-utility.416058/
+>
+> https://www.notebookcheck.net/Useful-Life-Hack-How-to-Disable-Modern-Standby-Connected-Standby.453125.0.html
+> https://www.dell.com/community/XPS/How-to-disable-modern-standby-in-Windows-21H1/td-p/7996308
+
+
+
+### 3.2 Disk Encryption
+- Make Encryption user chouce, because it interferes with OS break-fix and performance.
+```powershell
 1. `fsutil behavior set disableencryption 1`: Disable encryption on the file system.
 2. `cipher /d /s:C:\`: Decrypt all encrypted files on the C drive. Note that this command only works for files encrypted with the Encrypting File System (EFS). You should be logged in as the user who encrypted the files or an administrator who has the EFS recovery agent certificate. Otherwise, the command will fail, and the files will remain encrypted.
 3. `reg add "HKLM\Software\Policies\Microsoft\Windows\EnhancedStorageDevices" /v "TCGSecurityActivationDisabled" /t REG_DWORD /d "1" /f`: Disable the Trusted Platform Module (TPM) security activation to prevent automatic encryption of new storage devices.
@@ -38,19 +64,12 @@ reg add "HKLM\Software\Policies\Microsoft\Windows\EnhancedStorageDevices" /v "TC
 sc config BDESVC start= disabled
 sc config "EFS" start= disabled
 
--- add a button to encrypt by user choice
+# Add dekstop icon to start Encryption upon user decision
 
--Disable modern standby because it's creepy crashy and overheaty
+```
 
-powercfg /setdcvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
-powercfg /setacvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
-REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\F15576E8-98B7-4186-B944-EAFA664402D9 /v Attributes /t REG_DWORD /d 2 /f
-
-https://www.notebookcheck.net/Useful-Life-Hack-How-to-Disable-Modern-Standby-Connected-Standby.453125.0.html
-https://www.dell.com/community/XPS/How-to-disable-modern-standby-in-Windows-21H1/td-p/7996308
-
-
--Reduce logging resource usage
+## 3.3 Reduce IO
+```powershell
 - symlink logs and tempfiles to > NUL
 (example)
 @echo off
@@ -83,15 +102,18 @@ for /f "tokens=*" %%A in (event_logs.txt) do (
 :: Clean up
 del /f /q event_logs.txt
 
+```
 
-
+## 3.4 Drivers
+``` powershell
 -disable and prevent drivers from MS update because they are old
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "ExcludeWUDriversInQualityUpdate" /t REG_DWORD /d "1" /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Settings" /v "DeviceInstallDisabled" /t REG_DWORD /d "1" /f
 
--Update policies
-https://techcommunity.microsoft.com/t5/windows-it-pro-blog/the-windows-update-policies-you-should-set-and-why/ba-p/3270914
-(example)
+```
+
+## 3.5 Updates
+``` powershell
 :: Set Windows Update policy to receive stable updates only
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "DeferFeatureUpdates" /t REG_DWORD /d "0" /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "DeferFeatureUpdatesPeriodInDays" /t REG_DWORD /d "0" /f
@@ -109,7 +131,9 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DoNotConnec
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "IncludeRecommendedUpdates" /t REG_DWORD /d "1" /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "Include_WSUS31" /t REG_DWORD /d "1" /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "Include_MSUpdate" /t REG_DWORD /d "1" /f
-
+```
+### References:
+- https://techcommunity.microsoft.com/t5/windows-it-pro-blog/the-windows-update-policies-you-should-set-and-why/ba-p/3270914
 
 - disallow allow remote assist because it's laggy
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Remote Assistance" /v "fAllowToGetHelp" /t REG_DWORD /d "0" /f
