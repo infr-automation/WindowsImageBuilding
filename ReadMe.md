@@ -234,6 +234,9 @@ storage spaces not working
 MS Store:
 - turn off autoplay videos
 
+Turn off GUI fx
+google.com/search?q=UserPreferencesMask+value+in+the+Registry+to+enable+the+Classic+graphics+mode ?
+
 Sources:
 https://www.elevenforum.com/tutorials/
 https://www.winos.me/
