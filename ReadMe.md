@@ -86,6 +86,7 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Reliability" /v "StackTr
 :: Disable Windows Error Reporting
 reg add "HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting" /v "Disabled" /t REG_DWORD /d "1" /f
 
+
 :: Delete existing DumpStack.log and DumpStack.log.tmp files
 del /f /q C:\DumpStack.log
 del /f /q C:\DumpStack.log.tmp
@@ -103,6 +104,9 @@ for /f "tokens=*" %%A in (event_logs.txt) do (
 del /f /q event_logs.txt
 
 ```
+
+Ref
+https://yandex.com/search/?text=CrashControl+EnableLogFile&lr=10379
 
 ## 3.4 Drivers
 ``` powershell
