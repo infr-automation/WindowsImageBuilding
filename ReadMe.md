@@ -139,11 +139,9 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "Include_
 ### References:
 - https://techcommunity.microsoft.com/t5/windows-it-pro-blog/the-windows-update-policies-you-should-set-and-why/ba-p/3270914
 
-- disallow allow remote assist because it's laggy
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Remote Assistance" /v "fAllowToGetHelp" /t REG_DWORD /d "0" /f
 
-
-- add scheduled task to disable unused network related stuff
+## 3.6 Network
+### - add scheduled task to disable unused network related stuff
   client for ms net
   file and pr sharing
   register w dns
@@ -166,10 +164,10 @@ reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameter
 
 
 
--- Add button to enable per user need
-  
+### Add button to enable per user need (the igmp upnp mdns and ssdp are used for multimedia stuff)
+ - placeholder
 
-- Turn off IPv6
+## Turn off IPv6
 (Prevent ipv6:: binding)
 netsh int ipv6 isatap set state disabled #set-Net6to4Configuration
 netsh interface ipv6 set global randomizeidentifiers=disabled
@@ -190,13 +188,14 @@ netsh advfirewall firewall add rule name="Block all IPv6 traffic" protocol=any d
 
 
 
-- Firewall default disallow
+### Firewall default disallow
 fw dis inbound out- allj, cast teredo v6 cortana mDNS Narrator network discovery remote assist start wi-fi direct windows calc windows search wireless display
 netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound
 
+### disallow allow remote assist because it's laggy
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Remote Assistance" /v "fAllowToGetHelp" /t REG_DWORD /d "0" /f
 
--and so on:
-
+### SMB tuning
 disable default admin and disk share server
 restrict access over anonymous connections
 prevent joining homegroup
@@ -204,18 +203,23 @@ hide computer from browser list
 prevent network auto discovery
 hide entire network in network neighborhood
 
+### Hardening and tuning
 dis UAC pw
 act
 uninst add remove onedrive
 dis msteams startup
-first day of week
 
+## Edge
 edge start withot data
   privacy statement reject all
   multilingual text suggestions
-add language basic typing ocr (not lang pack)
-add kbd remove kbd
 
+## Regional
+add kbd remove kbd
+add language basic typing ocr (not lang pack)
+first day of week
+
+## Tooling
 add latest ps
 win event colletor service?
 office
@@ -234,10 +238,13 @@ storage spaces not working
 MS Store:
 - turn off autoplay videos
 
+## Graphics
 Turn off GUI fx
 google.com/search?q=UserPreferencesMask+value+in+the+Registry+to+enable+the+Classic+graphics+mode ?
 
-Sources:
+
+
+## Sources:
 https://www.elevenforum.com/tutorials/
 https://www.winos.me/
 https://github.com/Chuyu-Team/Dism-Multi-language
