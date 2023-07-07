@@ -5,6 +5,17 @@ use case: every OS use case
 
 ver 0.0001 a template
 
+<details><summary>References</summaryhttps://www.elevenforum.com/tutorials/  
+https://www.winos.me/  
+https://github.com/Chuyu-Team/Dism-Multi-language  
+https://www.elevenforum.com/tutorials/?prefix_id=7  
+https://www.elevenforum.com/tutorials/?prefix_id=12  
+https://www.tenforums.com/tutorials/id-Installation_Upgrade/  
+https://www.tenforums.com/tutorials/id-Virtualization/  
+nsanef topic/249660-disable-windows-10-telemetry-and-data-collection-collection-of-methods-tools  
+https://devblogs.microsoft.com/scripting/automatically-enable-and-disable-trace-logs-using-powershell/  
+https://duckduckgo.com/?q=windows+11+disable+logging+tracing&ia=web</summary>
+
 ## 1. Set up an environment to perform the modifications.
 ```powershell
 # placeholder
@@ -133,6 +144,7 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Settings" /v "De
 
 ## 3.5 Updates
 <details><summary>References</summary>https://techcommunity.microsoft.com/t5/windows-it-pro-blog/the-windows-update-policies-you-should-set-and-why/ba-p/3270914</details>
+
 ``` powershell
 :: Set Windows Update policy to receive stable updates only
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "DeferFeatureUpdates" /t REG_DWORD /d "0" /f
@@ -267,14 +279,4 @@ google.com/search?q=UserPreferencesMask+value+in+the+Registry+to+enable+the+Clas
 
 
 
-## Sources:
-https://www.elevenforum.com/tutorials/  
-https://www.winos.me/  
-https://github.com/Chuyu-Team/Dism-Multi-language  
-https://www.elevenforum.com/tutorials/?prefix_id=7  
-https://www.elevenforum.com/tutorials/?prefix_id=12  
-https://www.tenforums.com/tutorials/id-Installation_Upgrade/  
-https://www.tenforums.com/tutorials/id-Virtualization/  
-nsanef topic/249660-disable-windows-10-telemetry-and-data-collection-collection-of-methods-tools  
-https://devblogs.microsoft.com/scripting/automatically-enable-and-disable-trace-logs-using-powershell/  
-https://duckduckgo.com/?q=windows+11+disable+logging+tracing&ia=web
+
