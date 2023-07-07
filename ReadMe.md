@@ -1,20 +1,15 @@
 # Windows Gold Disk Building
-_Inspired by the need for a reliable OS_
 
-use case: every OS use case
-
-ver 0.0001 a template
-
-<details><summary>References</summary>https://www.elevenforum.com/tutorials/  
-https://www.winos.me/  
-https://github.com/Chuyu-Team/Dism-Multi-language  
-https://www.elevenforum.com/tutorials/?prefix_id=7  
-https://www.elevenforum.com/tutorials/?prefix_id=12  
-https://www.tenforums.com/tutorials/id-Installation_Upgrade/  
-https://www.tenforums.com/tutorials/id-Virtualization/  
-nsanef topic/249660-disable-windows-10-telemetry-and-data-collection-collection-of-methods-tools  
-https://devblogs.microsoft.com/scripting/automatically-enable-and-disable-trace-logs-using-powershell/  
-https://duckduckgo.com/?q=windows+11+disable+logging+tracing&ia=web  
+<details><summary>References</summary>https://www.elevenforum.com/tutorials/</br>
+https://www.winos.me/</br>
+https://github.com/Chuyu-Team/Dism-Multi-language</br>
+https://www.elevenforum.com/tutorials/?prefix_id=7</br>
+https://www.elevenforum.com/tutorials/?prefix_id=12</br>
+https://www.tenforums.com/tutorials/id-Installation_Upgrade/</br>
+https://www.tenforums.com/tutorials/id-Virtualization/</br>
+nsnfrm topic/249660-disable-windows-10-telemetry-and-data-collection-collection-of-methods-tools</br>
+https://devblogs.microsoft.com/scripting/automatically-enable-and-disable-trace-logs-using-powershell/</br>
+https://duckduckgo.com/?q=windows+11+disable+logging+tracing&ia=web</br>
 </details>
 
 
@@ -24,6 +19,7 @@ https://duckduckgo.com/?q=windows+11+disable+logging+tracing&ia=web
 ```powershell
 # placeholder
 # preferably download distribution files inside a VM
+# bring up a VM
 # automate the ISO build/ISO slim
 ```
 
