@@ -5,7 +5,7 @@ use case: every OS use case
 
 ver 0.0001 a template
 
-<details><summary>References</summaryhttps://www.elevenforum.com/tutorials/  
+<details><summary>References</summary>https://www.elevenforum.com/tutorials/  
 https://www.winos.me/  
 https://github.com/Chuyu-Team/Dism-Multi-language  
 https://www.elevenforum.com/tutorials/?prefix_id=7  
@@ -14,16 +14,19 @@ https://www.tenforums.com/tutorials/id-Installation_Upgrade/
 https://www.tenforums.com/tutorials/id-Virtualization/  
 nsanef topic/249660-disable-windows-10-telemetry-and-data-collection-collection-of-methods-tools  
 https://devblogs.microsoft.com/scripting/automatically-enable-and-disable-trace-logs-using-powershell/  
-https://duckduckgo.com/?q=windows+11+disable+logging+tracing&ia=web</summary>
+https://duckduckgo.com/?q=windows+11+disable+logging+tracing&ia=web  
+</details>
+
 
 ## 1. Set up an environment to perform the modifications.
+<details><summary>References</summary>DevOps practices</details>
+
 ```powershell
 # placeholder
 # preferably download distribution files inside a VM
 # automate the ISO build/ISO slim
 ```
-### References:
-DevOps practices
+
 
 ### 1.2. Slim down the ISO
 ```powershell
