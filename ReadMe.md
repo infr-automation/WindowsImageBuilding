@@ -19,16 +19,33 @@ DevOps practices
 # placeholder
 ```
 ### References:
+NTLite Windows11 Tuning PreSetupStage xml
 
-> - https://github.com/infr-automation/WindowsImageBuilding/blob/master/NTLiteFreeWindows11TuningPreSetupStagev01.xml.xml
+## 2. Cloud
 
-## 2. Cloud caching
 
 ## 3. OS settings
+Pre-configure OS settings  
++ Slimdown for all use cases  
++ Improve speed performance latency  
++ Improve reliability and reduce infosec risk  
++ Reduce energy footprint  
++ Empower the user correctly  
++ Reduce maintenaince risk and cost  
 
 ### 3.1 Power Management
+<details><summary>References</summary>https://www.softpedia.com/get/System/Launchers-Shutdown-Tools/Power-Plan-Assistant.shtml<br/>
+https://gist.github.com/raspi/203aef3694e34fefebf772c78c37ec2c#file-enable-all-advanced-power-settings-ps1-L5<br/>
+https://gist.github.com/Nt-gm79sp/1f8ea2c2869b988e88b4fbc183731693<br/>
+https://www.tenforums.com/performance-maintenance/149514-list-hidden-power-plan-attributes-maximize-cpu-performance.html<br/>
+https://www.tenforums.com/tutorials/107613-add-remove-ultimate-performance-power-plan-windows-10-a.html<br/>
+https://forums.guru3d.com/threads/windows-power-plan-settings-explorer-utility.416058<br/>
+https://www.notebookcheck.net/Useful-Life-Hack-How-to-Disable-Modern-Standby-Connected-Standby.453125.0.html<br/>
+https://www.dell.com/community/XPS/How-to-disable-modern-standby-in-Windows-21H1/td-p/7996308<br/>
+</details>
+
 ```powershell
-# Disable modern standby because it's creepy crashy and overheaty
+# use normal standby and not modern standby
 
 powercfg /setdcvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
 powercfg /setacvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
@@ -38,21 +55,9 @@ REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\F15576E8-98B7-
 
 ```
 
-#### References:
-> https://www.softpedia.com/get/System/Launchers-Shutdown-Tools/Power-Plan-Assistant.shtml  
-> https://gist.github.com/raspi/203aef3694e34fefebf772c78c37ec2c#file-enable-all-advanced-power-settings-ps1-L5  
-> https://gist.github.com/Nt-gm79sp/1f8ea2c2869b988e88b4fbc183731693  
-> https://www.tenforums.com/performance-maintenance/149514-list-hidden-power-plan-attributes-maximize-cpu-performance.html  
-> https://www.tenforums.com/tutorials/107613-add-remove-ultimate-performance-power-plan-windows-10-a.html  
-> https://forums.guru3d.com/threads/windows-power-plan-settings-explorer-utility.416058  
->
-> https://www.notebookcheck.net/Useful-Life-Hack-How-to-Disable-Modern-Standby-Connected-Standby.453125.0.html  
-> https://www.dell.com/community/XPS/How-to-disable-modern-standby-in-Windows-21H1/td-p/7996308
-
-
-
 ### 3.2 Disk Encryption
-- Make Encryption user chouce, because it interferes with OS break-fix and performance.
+Delay encryption and present user choice:
+
 ```powershell
 1. `fsutil behavior set disableencryption 1`: Disable encryption on the file system.
 2. `cipher /d /s:C:\`: Decrypt all encrypted files on the C drive. Note that this command only works for files encrypted with the Encrypting File System (EFS). You should be logged in as the user who encrypted the files or an administrator who has the EFS recovery agent certificate. Otherwise, the command will fail, and the files will remain encrypted.
@@ -70,8 +75,10 @@ sc config "EFS" start= disabled
 
 ```
 
-## 3.3 Reduce IO
+## 3.3 IO Optimization
 ### 3.3.1 Eliminate everything log, performance counter, record keeping, temp files related
+<details><summary>References</summary>https://yandex.com/search/?text=CrashControl+EnableLogFile&lr=10379 :: this search engine returns better results.</details>
+
 ```powershell
 - symlink logs and tempfiles to > NUL
 (example)
@@ -110,8 +117,6 @@ del /f /q event_logs.txt
 
 ```
 
-#### References
-https://yandex.com/search/?text=CrashControl+EnableLogFile&lr=10379 :: this search engine returns better results.
 
 ### 3.3.2 Add a button to reverse the above as needed
 
@@ -127,6 +132,7 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Settings" /v "De
 ```
 
 ## 3.5 Updates
+<details><summary>References</summary>https://techcommunity.microsoft.com/t5/windows-it-pro-blog/the-windows-update-policies-you-should-set-and-why/ba-p/3270914</details>
 ``` powershell
 :: Set Windows Update policy to receive stable updates only
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "DeferFeatureUpdates" /t REG_DWORD /d "0" /f
@@ -146,19 +152,18 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "IncludeR
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "Include_WSUS31" /t REG_DWORD /d "1" /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "Include_MSUpdate" /t REG_DWORD /d "1" /f
 ```
-### References:
-- https://techcommunity.microsoft.com/t5/windows-it-pro-blog/the-windows-update-policies-you-should-set-and-why/ba-p/3270914
+
 
 
 ## 3.6 Network
-### 3.6.1. add scheduled task to disable unused network related stuff
+### 3.6.1. Turn off unused network protocols with a scheduled task
   client for ms net  
   file and pr sharing  
   register w dns  
   netbios  
   wi fi wake  
   eth fc  
-  bt off  
+  bluetooth
 
 ```powershell
 Register-ScheduledTask -TaskName "DisableNetworkBindings" -Trigger (New-ScheduledTaskTrigger -OnEventID 4004 -User "NT AUTHORITY\SYSTEM") -Action (New-ScheduledTaskAction -Execute "Powershell.exe" -Argument "Disable-NetAdapterBinding -Name * -ComponentID ms_msclient, ms_server, ms_serverdriver, ms_tcpip6, ms_wuguid, ms_wusnmp, ms_lltdio, ms_rspndr, ms_nwifi, ms_msclientio, ms_ndisuio, ms_rdma_ndk, ms_rdma_rspndr, ms_rdma_tcp, ms_rdma_udp, ms_tcpip -PassThru | Disable-NetAdapterBinding -Name * -ComponentID ms_netbt, ms_lldp, ms_wfplwf, ms_wfpcpl, ms_pacer | Set-NetAdapterAdvancedProperty -Name * -DisplayName 'Flow Control' -DisplayValue 'Disabled'") -Settings (New-ScheduledTaskSettingsSet -Priority 4 -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1)) -Force
