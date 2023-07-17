@@ -276,6 +276,12 @@ MS Store:
 Turn off GUI fx  
 google.com/search?q=UserPreferencesMask+value+in+the+Registry+to+enable+the+Classic+graphics+mode ?
 
+## Eliminate Smooth scrolling
+@echo off
+reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "SmoothScroll" /t REG_SZ /d "0" /f
+reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "MouseWheelRouting" /t REG_SZ /d "0" /f
+echo Smooth scrolling has been disabled. Please restart your computer for the changes to take effect.
+pause
 
 
 
