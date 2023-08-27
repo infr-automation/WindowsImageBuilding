@@ -65,21 +65,9 @@ Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Power" -Name "CsE
 
 # Coalescing IO - will introduce IO latency to save power
 
-# Write Cache
-# Ensure the script is running with administrative privileges
-if (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    Write-Error "This script needs to be run as an Administrator. Exiting..."
-    exit
-}
-
-# Maximize write cache via registry (this sets the LargeSystemCache to 1, which maximizes cache)
-$registryPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management"
-Set-ItemProperty -Path $registryPath -Name "LargeSystemCache" -Value 1
-
-Write-Host "Maximized write cache via registry."
-
-
 ```
+
+
 
 ### 3.2 Disk Encryption
 Delay encryption and present user choice:
@@ -106,6 +94,25 @@ sc config "EFS" start= disabled
 <details><summary>References</summary>https://yandex.com/search/?text=CrashControl+EnableLogFile&lr=10379 :: this search engine returns better results.</details>
 
 ```powershell
+
+
+# Write Cache
+# Ensure the script is running with administrative privileges
+if (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    Write-Error "This script needs to be run as an Administrator. Exiting..."
+    exit
+}
+
+# Maximize write cache via registry (this sets the LargeSystemCache to 1, which maximizes cache)
+$registryPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management"
+Set-ItemProperty -Path $registryPath -Name "LargeSystemCache" -Value 1
+
+Write-Host "Maximized write cache via registry."
+
+
+
+
+
 - symlink logs and tempfiles to > NUL
 (example)
 @echo off
