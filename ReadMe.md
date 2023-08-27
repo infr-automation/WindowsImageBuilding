@@ -55,6 +55,10 @@ https://www.dell.com/community/XPS/How-to-disable-modern-standby-in-Windows-21H1
 </details>
 
 ```powershell
+
+# get rid of hibernation
+powercfg -h off
+
 # use normal standby and not modern standby
 
 powercfg /setdcvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
