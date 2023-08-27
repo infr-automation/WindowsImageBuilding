@@ -61,7 +61,23 @@ powercfg /setdcvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA66
 powercfg /setacvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
 REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\F15576E8-98B7-4186-B944-EAFA664402D9 /v Attributes /t REG_DWORD /d 2 /f
 
-# Coalescing IO
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Power" -Name "CsEnabled" -Value 0 -ErrorAction SilentlyContinue
+
+# Coalescing IO - will introduce IO latency to save power
+
+# Write Cache
+# Ensure the script is running with administrative privileges
+if (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    Write-Error "This script needs to be run as an Administrator. Exiting..."
+    exit
+}
+
+# Maximize write cache via registry (this sets the LargeSystemCache to 1, which maximizes cache)
+$registryPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management"
+Set-ItemProperty -Path $registryPath -Name "LargeSystemCache" -Value 1
+
+Write-Host "Maximized write cache via registry."
+
 
 ```
 
