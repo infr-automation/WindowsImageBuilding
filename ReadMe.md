@@ -117,6 +117,39 @@ Write-Host "Maximized write cache via registry."
 
 
 
+# ADD RAMDISK AND INITIALIZE RAMDISK
+# BELOW CODE IS EXAMPLE PLACEHOLDER NOT WORKING
+# Ensure the script runs with administrative privileges
+if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    exit
+}
+
+# Mount recovery.wim and extract ramdisk.sys
+$mountPath = "C:\TempWIMMount"
+$recoveryWIM = "C:\path_to_recovery.wim"
+New-Item -Path $mountPath -ItemType Directory -Force | Out-Null
+dism /Mount-Wim /WimFile:$recoveryWIM /index:1 /MountDir:$mountPath
+Copy-Item "$mountPath\Windows\System32\drivers\ramdisk.sys" "C:\Windows\System32\drivers\ramdisk.sys"
+dism /Unmount-Wim /MountDir:$mountPath /discard
+
+# Registry setup for ramdisk.sys
+$regPath = "HKLM:\SYSTEM\CurrentControlSet\Services\Ramdisk"
+New-Item -Path $regPath -Force | Out-Null
+Set-ItemProperty -Path $regPath -Name "Type" -Value 1
+Set-ItemProperty -Path $regPath -Name "Start" -Value 0
+Set-ItemProperty -Path $regPath -Name "ErrorControl" -Value 1
+Set-ItemProperty -Path $regPath -Name "ImagePath" -Value "system32\drivers\ramdisk.sys"
+Set-ItemProperty -Path $regPath -Name "Group" -Value "Base"
+
+$regParamsPath = "$regPath\Parameters"
+New-Item -Path $regParamsPath -Force | Out-Null
+Set-ItemProperty -Path $regParamsPath -Name "UsePAE" -Value 0
+Set-ItemProperty -Path $regParamsPath -Name "DiskSize" -Value 2147483648  # 2GB in bytes
+
+# Notify the user
+Write-Output "RAMDisk setup complete. Please restart your system."
+
+
 
 
 - symlink logs and tempfiles to > NUL
