@@ -73,6 +73,18 @@ Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Power" -Name "CsE
 # Coalescing IO - will introduce IO latency to save power
 
 ```
+```powershell
+# Get the list of devices that can wake the system
+$wakeDevices = powercfg -devicequery wake_armed
+
+# Disable wake functionality for mouse or touchpad devices
+$wakeDevices | ForEach-Object {
+    if ($_ -like "*Mouse*" -or $_ -like "*Touchpad*") {
+        powercfg -devicedisablewake "$_"
+        Write-Output "Disabled wake functionality for: $_"
+    }
+}
+```
 
 
 
