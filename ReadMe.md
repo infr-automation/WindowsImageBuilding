@@ -299,6 +299,35 @@ prevent joining homegroup
 hide computer from browser list  
 prevent network auto discovery  
 hide entire network in network neighborhood
+``` powershell
+# Run this script with elevated privileges (as an administrator)
+
+# 1. Disable default admin shares (like C$, D$, etc.)
+# This will disable the administrative shares for the system root and system volume root directories
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" -Name "AutoShareWks" -Value 0
+
+# 2. Restrict access over anonymous connections
+# This will prevent anonymous access to the computer from the network
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Lsa" -Name "RestrictAnonymous" -Value 2
+
+# 3. Hide the computer from the browser list
+# This will prevent the computer from appearing in the list of networked devices
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\lanmanserver\parameters" -Name "Hidden" -Value 1
+Restart-Service "LanmanServer" -Force
+
+# 4. WRONG Prevent network auto-discovery
+# This will set the network profile to private and then disable network discovery for it
+Get-NetConnectionProfile | Set-NetConnectionProfile -NetworkCategory Private
+Set-NetFirewallProfile -Profile Private -NetworkDiscovery Disabled
+
+# 5. Hide entire network in Network Neighborhood 
+# This will prevent the computer from displaying the entire network in the Network Neighborhood
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "NoEntireNetwork" -Type DWord -Value 1
+
+# Notify that the script has completed
+Write-Output "Script execution completed. Please note that some changes might require a user logoff or system restart to fully take effect."
+
+```
 
 ### Hardening and tuning
 dis UAC pw  
