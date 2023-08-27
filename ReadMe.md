@@ -26,7 +26,9 @@ https://duckduckgo.com/?q=windows+11+disable+logging+tracing&ia=web</br>
 
 ### 1.2. Slim down the ISO
 ```powershell
-# placeholder
+# sysprep same way it's done for VDI - automate
+# but add an full NTLite step before installing ISO and/or before sysprep
+# automated testing
 ```
 ### References:
 NTLite Windows11 Tuning PreSetupStage xml
