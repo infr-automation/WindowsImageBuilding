@@ -86,6 +86,20 @@ $wakeDevices | ForEach-Object {
 }
 ```
 
+``` powershell
+# Disable WoL at the OS level
+powercfg -setacvalueindex SCHEME_CURRENT SUB_NONE F44E3DAE-CB3E-4D65-8A2A-7A5C5C6D3090 0
+powercfg -setdcvalueindex SCHEME_CURRENT SUB_NONE F44E3DAE-CB3E-4D65-8A2A-7A5C5C6D3090 0
+
+# Disable WoL for all network adapters
+Get-NetAdapter | Where-Object { $_.Status -eq 'Up' } | ForEach-Object {
+    Write-Output "Processing $($_.Name)..."
+    # Disable WoL features
+    Disable-NetAdapterPowerManagement -Name $_.Name -WakeOnMagicPacket $false -WakeOnPattern $false -Confirm:$false
+}
+
+Write-Output "WoL has been disabled."
+```
 
 
 ### 3.2 Disk Encryption
