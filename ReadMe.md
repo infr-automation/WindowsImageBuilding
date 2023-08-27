@@ -10,6 +10,7 @@ https://www.tenforums.com/tutorials/id-Virtualization/</br>
 nsnfrm topic/249660-disable-windows-10-telemetry-and-data-collection-collection-of-methods-tools</br>
 https://devblogs.microsoft.com/scripting/automatically-enable-and-disable-trace-logs-using-powershell/</br>
 https://duckduckgo.com/?q=windows+11+disable+logging+tracing&ia=web</br>
+https://msfn.org/</br>
 </details>
 
 
