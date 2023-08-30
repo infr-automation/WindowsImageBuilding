@@ -87,6 +87,8 @@ $wakeDevices | ForEach-Object {
 ```
 
 ``` powershell
+# Disable Wake Timers on AC
+powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d 0
 # Disable WoL at the OS level
 powercfg -setacvalueindex SCHEME_CURRENT SUB_NONE F44E3DAE-CB3E-4D65-8A2A-7A5C5C6D3090 0
 powercfg -setdcvalueindex SCHEME_CURRENT SUB_NONE F44E3DAE-CB3E-4D65-8A2A-7A5C5C6D3090 0
