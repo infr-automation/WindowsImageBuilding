@@ -101,6 +101,39 @@ Get-NetAdapter | Where-Object { $_.Status -eq 'Up' } | ForEach-Object {
 }
 
 Write-Output "WoL has been disabled."
+
+
+# Extreme Battery Saver on Idle (example not tested) (checks every 10min for idleness?)
+
+# Define the power plan name
+$powerPlanName = "Extreme Battery Saver"
+
+# Check if the power plan exists
+$existingPlan = Get-CimInstance -Namespace root/cimv2/power -ClassName Win32_PowerPlan | Where-Object { $_.ElementName -eq $powerPlanName }
+
+if (-not $existingPlan) {
+    # Create the power plan based on the Power saver
+    $powerSaverGuid = (Get-CimInstance -Namespace root/cimv2/power -ClassName Win32_PowerPlan | Where-Object { $_.ElementName -eq "Power saver" }).InstanceID -replace ".*\{(.*)\}.*", '$1'
+    $newPlanGuid = powercfg /duplicate $powerSaverGuid | Out-String | ForEach-Object { $_ -replace ".*\{(.*)\}.*", '$1' }
+    powercfg /changename $newPlanGuid $powerPlanName
+} else {
+    $newPlanGuid = $existingPlan.InstanceID -replace ".*\{(.*)\}.*", '$1'
+}
+
+# Script to activate the power plan
+$scriptContent = @"
+# Activate the power plan
+powercfg /setactive $newPlanGuid
+"@
+$scriptPath = "$env:USERPROFILE\setBatterySaver.ps1"
+$scriptContent | Out-File -Path $scriptPath
+
+# Create a scheduled task to run the script when the computer is idle
+$taskAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-ExecutionPolicy Bypass -File $scriptPath"
+$taskTrigger = New-ScheduledTaskTrigger -AtStartup -RepetitionInterval ([TimeSpan]::FromMinutes(10)) -Idle
+Register-ScheduledTask -Action $taskAction -Trigger $taskTrigger -TaskName "ActivateBatterySaver" -Description "Switches to battery saver plan when idle"
+
+
 ```
 
 
