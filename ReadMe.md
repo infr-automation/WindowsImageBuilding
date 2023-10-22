@@ -400,6 +400,11 @@ dis msteams startup
 edge start withot data  
   privacy statement reject all  
   multilingual text suggestions
+  edge://flags
+  #media-router-cast-allow-all-ips
+  #media-route-dial-provider
+  #edge-autoplay-user-setting-block-option +
+  #smooth-scrolling
 
 ## Regional
 add kbd remove kbd  
