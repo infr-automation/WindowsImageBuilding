@@ -11,15 +11,18 @@ nsnfrm topic/249660-disable-windows-10-telemetry-and-data-collection-collection-
 https://devblogs.microsoft.com/scripting/automatically-enable-and-disable-trace-logs-using-powershell/</br>
 https://duckduckgo.com/?q=windows+11+disable+logging+tracing&ia=web</br>
 https://msfn.org/</br>
+https://www.youtube.com/playlist?list=PL6G7A0Cr8StGMnC6cS4FBsMcxJAJcm6Fw</br>
+https://www.youtube.com/@ChrisTitusTech/playlists</br>
+https://christitus.com/categories/windows/</br>
 </details>
 
 
-## 1. Set up an environment to perform the modifications.
+## 1. A Dev VM to do all the mods
 <details><summary>References</summary>DevOps practices</details>
 
 ```powershell
 # placeholder
-# preferably download distribution files inside a VM
+# preferably download distribution files inside a oracle box VM
 # bring up a VM
 # automate the ISO build/ISO slim
 ```
@@ -35,16 +38,18 @@ https://msfn.org/</br>
 NTLite Windows11 Tuning PreSetupStage xml
 
 ## 2. Cloud
-
+```powershell
+# store the stuff online on the clouds for the drama amplification factor
+```
 
 ## 3. OS settings
 Pre-configure OS settings  
-+ Slimdown for all use cases  
-+ Improve speed performance latency  
-+ Improve reliability and reduce infosec risk  
-+ Reduce energy footprint  
-+ Empower the user correctly  
-+ Reduce maintenaince risk and cost  
++ Slimdown for all use cases - universal image  
++ Improve speed performance latency - finetune  
++ Improve reliability and reduce infosec risk - hardening  
++ Reduce energy footprint - finetune powersettings  
++ Empower the user correctly - serious users only not for babies 
++ Reduce maintenaince risk and cost - make the system unbreakable somehow 
 
 ### 3.1 Power Management
 <details><summary>References</summary>https://www.softpedia.com/get/System/Launchers-Shutdown-Tools/Power-Plan-Assistant.shtml<br/>
@@ -301,7 +306,7 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "Include_
   bluetooth
 
 ```powershell
-Register-ScheduledTask -TaskName "DisableNetworkBindings" -Trigger (New-ScheduledTaskTrigger -OnEventID 4004 -User "NT AUTHORITY\SYSTEM") -Action (New-ScheduledTaskAction -Execute "Powershell.exe" -Argument "Disable-NetAdapterBinding -Name * -ComponentID ms_msclient, ms_server, ms_serverdriver, ms_tcpip6, ms_wuguid, ms_wusnmp, ms_lltdio, ms_rspndr, ms_nwifi, ms_msclientio, ms_ndisuio, ms_rdma_ndk, ms_rdma_rspndr, ms_rdma_tcp, ms_rdma_udp, ms_tcpip -PassThru | Disable-NetAdapterBinding -Name * -ComponentID ms_netbt, ms_lldp, ms_wfplwf, ms_wfpcpl, ms_pacer | Set-NetAdapterAdvancedProperty -Name * -DisplayName 'Flow Control' -DisplayValue 'Disabled'") -Settings (New-ScheduledTaskSettingsSet -Priority 4 -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1)) -Force
+Register-ScheduledTask -TaskName "DisableNetworkBindings" -Trigger (New-ScheduledTaskTrigger -OnEventID 4004 -User "NT AUTHORITY\SYSTEM") -Action (New-ScheduledTaskAction -Execute "Powershell.exe" -Argument "-Command "Disable-NetAdapterBinding -ComponentID ms_implat,ms_lldp,ms_lltdio,ms_server,ms_msclient,ms_tcpip6,ms_rspndr,ms_pacer -Name *;  Set-NetAdapterAdvancedProperty -DisplayName 'Flow Control' -DisplayValue 'Disabled'") -Settings (New-ScheduledTaskSettingsSet -Priority 4 -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1)) -Force
 
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters" /v GlobalQueryBlockList /t REG_MULTI_SZ /d "local,localhost,localdomain,local.,*\nmdns,*.local" /f
 
@@ -344,7 +349,7 @@ netsh advfirewall firewall add rule name="Block all IPv6 traffic" protocol=any d
 ### Firewall default disallow
 fw dis inbound out- allj, cast teredo v6 cortana mDNS Narrator network discovery remote assist start wi-fi direct windows calc windows search wireless display
 ```powershell
-netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound
+Set-NetFirewallProfile -DefaultInboundaction Block
 ```
 ## remove Wireless Display
 
