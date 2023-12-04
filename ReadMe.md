@@ -1,6 +1,8 @@
 # Windows Gold Disk Building
 
-<details><summary>References</summary>https://www.elevenforum.com/tutorials/</br>
+<details><summary>References</summary>https://github.com/atlas-os/atlas</br>
+https://windowsxlite.com/ultralight/</br>
+https://www.elevenforum.com/tutorials/</br>
 https://www.winos.me/</br>
 https://github.com/Chuyu-Team/Dism-Multi-language</br>
 https://www.elevenforum.com/tutorials/?prefix_id=7</br>
@@ -14,6 +16,7 @@ https://msfn.org/</br>
 https://www.youtube.com/playlist?list=PL6G7A0Cr8StGMnC6cS4FBsMcxJAJcm6Fw</br>
 https://www.youtube.com/@ChrisTitusTech/playlists</br>
 https://christitus.com/categories/windows/</br>
+https://github.com/ntdevlabs/tiny11builder</br>
 </details>
 
 
