@@ -167,6 +167,12 @@ sc config "EFS" start= disabled
 
 ## 3.3 IO Optimization
 ### 3.3.1 Eliminate everything log, performance counter, record keeping, temp files related
+
+Enable as before: "Do not allow locations on removable drives to be added to libraries"
+
+Enable these two ADDITIONAL settings: "Default excluded paths" AND "Prevent indexing certain paths". In each of those two, specify the drive letters to exclude (i.e. "F:\")
+
+
 <details><summary>References</summary>https://yandex.com/search/?text=CrashControl+EnableLogFile&lr=10379 :: this search engine returns better results.</details>
 
 ```powershell
