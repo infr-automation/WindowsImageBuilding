@@ -17,7 +17,19 @@ https://www.youtube.com/playlist?list=PL6G7A0Cr8StGMnC6cS4FBsMcxJAJcm6Fw</br>
 https://www.youtube.com/@ChrisTitusTech/playlists</br>
 https://christitus.com/categories/windows/</br>
 https://github.com/ntdevlabs/tiny11builder</br>
+
+https://chat.openai.com/share/9d143b48-d83d-4ab8-98fa-7e3d1fcb4408</br>
+https://github.com/WinTweaks/windows-optimization</br>
+
+https://github.com/simeononsecurity/Windows-Optimize-Harden-Debloat</br>
+
+https://github.com/hellzerg/optimizer</br>
+
+https://g.co/bard/share/80197208559f</br>
+
+https://claude.ai/chat/13627d29-74f6-4b26-a72b-ee40166b3ae9</br>
 </details>
+
 
 
 ## 1. A Dev VM to do all the mods
