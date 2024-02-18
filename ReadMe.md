@@ -28,6 +28,7 @@ https://github.com/hellzerg/optimizer</br>
 https://g.co/bard/share/80197208559f</br>
 
 https://claude.ai/chat/13627d29-74f6-4b26-a72b-ee40166b3ae9</br>
+htps crustywindo dot ws/</br>
 </details>
 
 
