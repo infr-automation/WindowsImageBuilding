@@ -156,6 +156,8 @@ Register-ScheduledTask -Action $taskAction -Trigger $taskTrigger -TaskName "Acti
 
 
 ```
+kill and relaunch apps on standby
+```
 
 
 ### 3.2 Disk Encryption
